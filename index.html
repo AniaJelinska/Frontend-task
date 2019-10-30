@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TV Finder</title>
+    <title>Finder</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="container">
-        <header>Find something</header>
-        <form>
+    <div id="main-container">
+        <header>Find Something</header>
+        <div id="search-container">
+            <div id="search-icon"></div>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" autocomplete="off" autofocus placeholder="Search...">
-            <input id="fetchSeries" type="submit" value="Search"/>
-        </form>
+            <input id="title" type="text" name="title" autocomplete="off" autofocus placeholder="Search...">
+            <button id="btn-search">Search</button>
+        </div>
+        <div id="output-container">
+            <div id="output"></div>
+        </div>
     </div>
 
     <script src="./script.js"></script>
