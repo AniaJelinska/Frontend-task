@@ -1,4 +1,12 @@
- document.getElementById('btn-search').addEventListener('click', search);
+
+
+document
+    .getElementById('btn-search')
+    .addEventListener('click', () => {
+        let title = document.getElementById("title").value
+        search(title, "", "Title").then(showSlicedResult)
+    }
+    );
 
 const state = {
     lastNumberOfResults: 0,
@@ -7,7 +15,7 @@ const state = {
   
   
   async function search(title, year, sortByProperty) {
-    try{
+    try{  
       let url = `https://www.omdbapi.com/?s=${title}&y=${year}&apikey=6a0ebf5d`;
       let response = await fetch(url);
       const data = await response.json();
@@ -55,11 +63,11 @@ const state = {
   }
   
   
-  search("day", "", "Year")
+
   
   
   function showSlicedResult (){
-    let newNumberOfResult = state.lastNumberOfResults + 1;
+    let newNumberOfResult = state.lastNumberOfResults + 2;
     state.lastNumberOfResults = newNumberOfResult;
   
     let slicedResult = state.data.slice(0,newNumberOfResult);
@@ -82,7 +90,8 @@ const state = {
   ${htmlTags}
   </table>`
   
-    console.log(output);
+  let x =  document.getElementById("output");
+  x.innerHTML = output;
   }
 
 
