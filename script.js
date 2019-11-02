@@ -5,10 +5,23 @@ document
     .addEventListener('click', () => {
         clearState();
         document.getElementById("output").innerHTML = '';
-        let title = document.getElementById("title").value
-        search(title, "", "Title").then(showSlicedResult)
+        const title = document.getElementById("title").value;
+        const year = document.getElementById("year").value;
+        const sortByProperty = getValueFromRadioBtn();
+        search(title, year, sortByProperty).then(() => showSlicedResult(sortByProperty))
     }
     );
+
+ function getValueFromRadioBtn(){
+    const radios = document.getElementsByName('radioselector');
+
+    for (var i = 0, length = radios.length; i < length; i++){
+        if (radios[i].checked){
+            return radios[i].value;
+        }
+    }
+ }   
+
 
 const state = {
     lastNumberOfResults: 0,
@@ -25,6 +38,9 @@ function clearState () {
 
   async function search(title, year, sortByProperty) {
     try{  
+      if(title === ""){
+          return;
+      }  
       let url = `https://www.omdbapi.com/?s=${title}&y=${year}&apikey=6a0ebf5d`;
       let response = await fetch(url);
       const data = await response.json();
@@ -33,7 +49,7 @@ function clearState () {
         return;
       } 
       
-      state.data = sortBy(data, sortByProperty);
+      state.data = data.Search;
   
     } catch (error) {
       console.log(error);
@@ -47,11 +63,11 @@ function clearState () {
     if(sortByProperty === "Year"){
       return sortByYear(data);
     }
-    return data;
+    return data.Search;
   }
   
   function sortByTitle(data){
-     return data.Search.sort((a,b) => {
+     return data.sort((a,b) => {
         if(a.Title < b.Title) 
           return -1; 
         if(a.Title > b.Title) 
@@ -62,7 +78,7 @@ function clearState () {
   }
   
   function sortByYear(data){
-     return data.Search.sort((a,b) => {
+     return data.sort((a,b) => {
         if(a.Year < b.Year) 
           return -1; 
         if(a.Year > b.Year) 
@@ -72,17 +88,32 @@ function clearState () {
       })
   }
   
-  function showSlicedResult (){
+  window.addEventListener('scroll',function() {
+    scrollHeight = this.scrollY;
+    if(scrollHeight = 5) {
+        const sortByProperty = getValueFromRadioBtn();
+        showSlicedResult(sortByProperty);
+    }
+  })
+
+
+
+
+  function showSlicedResult (sortByProperty){
     if(!!state.error) {
         document.getElementById("output").innerHTML = state.error;
         return;
     }  
+    if(state.data.length === 0){
+        return;
+    }
 
     let newNumberOfResult = state.lastNumberOfResults + 2;
     state.lastNumberOfResults = newNumberOfResult;
   
     let slicedResult = state.data.slice(0,newNumberOfResult);
-    let htmlTags = slicedResult
+    let sorted = sortBy(slicedResult, sortByProperty);
+    let htmlTags = sorted
       .map(elem => `<tr>
         <td>
             <img src=${elem.Poster}/>
