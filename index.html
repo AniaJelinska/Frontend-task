@@ -9,18 +9,25 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="main-container">
-        <header>Find Something</header>
-        <div id="search-container">
-            <div id="search-icon"></div>
-            <label for="title">Title:</label>
-            <input id="title" type="text" name="title" autocomplete="off" autofocus placeholder="Search...">
-            <button id="btn-search">Search</button>
+   <div id="wrapper">
+        <div id="main-container">
+                <header>FILM FINDER</header>
+                <div id="search-container">
+                    <div id="search-icon"></div>
+                    <input id="title" type="text" name="title" autocomplete="off" autofocus placeholder="Title...">
+                    <input id="year" type="text" name="year" autocomplete="off" autofocus placeholder="Year...">
+                    <button id="btn-search">Search</button>
+                    <div id="select-container">
+                        <input class="select" type="radio" value="Title" name="radioselector">TITLE<br>   
+                        <input class="select" type="radio" value="Year" name="radioselector">YEAR<br>
+                        <input class="select" type="radio" value="" name="radioselector">NONE<br>
+                    </div>    
+                </div>   
         </div>
         <div id="output-container">
             <div id="output"></div>
-        </div>
-    </div>
+        </div>   
+   </div>
 
     <script src="./script.js"></script>
 
