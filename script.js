@@ -1,5 +1,3 @@
-
-
 document
     .getElementById('btn-search')
     .addEventListener('click', () => {
@@ -90,7 +88,7 @@ function clearState () {
   
   window.addEventListener('scroll',function() {
     scrollHeight = this.scrollY;
-    if(scrollHeight = 5) {
+    if(scrollHeight = 125) {
         const sortByProperty = getValueFromRadioBtn();
         showSlicedResult(sortByProperty);
     }
@@ -108,7 +106,7 @@ function clearState () {
         return;
     }
 
-    let newNumberOfResult = state.lastNumberOfResults + 2;
+    let newNumberOfResult = state.lastNumberOfResults + 5;
     state.lastNumberOfResults = newNumberOfResult;
   
     let slicedResult = state.data.slice(0,newNumberOfResult);
@@ -117,24 +115,31 @@ function clearState () {
       .map(elem => `<tr>
         <td>
             <img src=${elem.Poster}/>
+            <div>
+                <div>${elem.Title}</div>
+                <div>${elem.Year}</div>
+            </div>    
         </td>
-        <td>${elem.Title}</td>
-        <td>${elem.Year}</td>
+     
         </tr>`)
       .reduce( (p,n) => p + n);
   
     let output = `<table>
     <tr>
-      <th>Title</th>
-      <th>Year</th>
-      <th>Poster</th>
+      <th></th>
     </tr>
   ${htmlTags}
-  </table>`
+  </table>
+ `
   
   let x =  document.getElementById("output");
   x.innerHTML = output;
   }
+
+
+
+
+
 
 
 
