@@ -3,6 +3,8 @@
 document
     .getElementById('btn-search')
     .addEventListener('click', () => {
+        clearState();
+        document.getElementById("output").innerHTML = '';
         let title = document.getElementById("title").value
         search(title, "", "Title").then(showSlicedResult)
     }
@@ -10,17 +12,25 @@ document
 
 const state = {
     lastNumberOfResults: 0,
-    data: []
+    data: [],
+    error: ""
   }
   
   
+function clearState () {
+    state.data = [];
+    state.lastNumberOfResults = 0;
+    state.error = "";
+}
+
   async function search(title, year, sortByProperty) {
     try{  
       let url = `https://www.omdbapi.com/?s=${title}&y=${year}&apikey=6a0ebf5d`;
       let response = await fetch(url);
       const data = await response.json();
       if(data.Response === "False") {
-        return console.log(data.Error)
+        state.error = data.Error;
+        return;
       } 
       
       state.data = sortBy(data, sortByProperty);
@@ -62,11 +72,12 @@ const state = {
       })
   }
   
-  
-
-  
-  
   function showSlicedResult (){
+    if(!!state.error) {
+        document.getElementById("output").innerHTML = state.error;
+        return;
+    }  
+
     let newNumberOfResult = state.lastNumberOfResults + 2;
     state.lastNumberOfResults = newNumberOfResult;
   
