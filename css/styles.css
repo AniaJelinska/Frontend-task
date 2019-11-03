@@ -12,15 +12,16 @@ body {
 }
 
 #main-container {
-    /* position: fixed; */
     display: flex;
+    position: fixed;
+    z-index: 1;
     width: 100%;
     height: 200px;
     background: rgb(11, 44, 54);
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
 
-header {
+h1 {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
@@ -99,8 +100,10 @@ input#year {
 }
 
 #output-container {
+    position: relative;
     margin: 0 auto;
     padding: 10px;
+    padding-top: 250px;
     width: 70%;
     font-size: 30px;
 }
