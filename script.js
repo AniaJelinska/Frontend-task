@@ -94,9 +94,6 @@ function clearState () {
     }
   })
 
-
-
-
   function showSlicedResult (sortByProperty){
     if(!!state.error) {
         document.getElementById("output").innerHTML = state.error;
@@ -106,7 +103,7 @@ function clearState () {
         return;
     }
 
-    let newNumberOfResult = state.lastNumberOfResults + 5;
+    let newNumberOfResult = state.lastNumberOfResults + 12;
     state.lastNumberOfResults = newNumberOfResult;
   
     let slicedResult = state.data.slice(0,newNumberOfResult);
