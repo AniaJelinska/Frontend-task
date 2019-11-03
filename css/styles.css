@@ -95,7 +95,6 @@ input#year {
 
 #btn-search:hover {
     background: rgb(70, 158, 154);
-    /* color: black; */
 }
 
 #output-container {
@@ -114,18 +113,25 @@ td {
     background-color: rgb(255, 255, 255);
     margin-bottom: 20px;   
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
-    height: 130px;
+    height: 150px;
 }
 
-td div {
+/* td div {
     display: flex;
     flex-direction: column;
     padding: 10px 10px 10px 50px;
     align-self: center;
+} */
+
+td div:nth-child(1) {
+    font-size: 22px;
+    font-weight: bold; 
+    max-width: 300px; 
 }
 
 td div:nth-child(2) {
-    display: block;
+    display: block;   
+    font-size: 20px;
 }
 
 table {
@@ -133,16 +139,41 @@ table {
 }
 
 img {
-    max-height: 130px;
+    max-height: 150px;
+    width: 110px;
 }  
 
 img:before {
     content: ' ';
     display: block;
     position: absolute;
-    height: 130px;
-    width: 80px;
+    height: 150px;
+    width: 110px;
     background-image: url(/default-movie.png);
     background-size: contain;
 }
 
+ td div {
+    padding: 10px;
+    align-self: center;
+    width: 200px;
+}
+
+.details {
+    font-size: 17px;
+    width: 200px;
+    margin: 0 auto;
+    padding: 30px;
+    align-self: center;
+}
+
+#details-plot {
+    font-size: 17px;
+    width: 300px;  
+}
+
+.icon {
+    height: 35px;
+    width: auto;
+    align-self: center;
+}
