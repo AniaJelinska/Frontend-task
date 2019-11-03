@@ -52,7 +52,7 @@ function clearState () {
     if (state.totalResults <= state.data.length) {
         if (!state.noMoreResults) {
             state.noMoreResults = true;
-            document.getElementById("output").innerHTML += "No More Results";
+            document.getElementById("output").innerHTML += "No more results.";
         }
         return;
     }

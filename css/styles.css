@@ -22,7 +22,7 @@ body {
     position: fixed;
     z-index: 1;
     width: 100%;
-    height: 200px;
+    height: 160px;
     background: rgb(11, 44, 54);
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
@@ -38,11 +38,12 @@ h1 {
 #search-container {
     display: block;
     margin: 30px auto;
+    padding: 20px;
     width: 70%;
     text-align: center;
     font-size: 20px;
 }
- #select-container {
+ /* #select-container {
     display: flex;
     justify-content: center;
     padding: 30px;
@@ -54,18 +55,7 @@ h1 {
      width: 70px;
      height: 30px;
      
- }
-
-/* #search-icon {
-   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iIzVGNjM2OCI+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0E2LjQ3MSA2LjQ3MSAwIDAgMCAxNiA5LjUgNi41IDYuNSAwIDEgMCA5LjUgMTZjMS42MSAwIDMuMDktLjU5IDQuMjMtMS41N2wuMjcuMjh2Ljc5bDUgNC45OUwyMC40OSAxOWwtNC45OS01em0tNiAwQzcuMDEgMTQgNSAxMS45OSA1IDkuNVM3LjAxIDUgOS41IDUgMTQgNy4wMSAxNCA5LjUgMTEuOTkgMTQgOS41IDE0eiIvPjwvc3ZnPg==);
-    bottom: 0;
-    height: 24px;
-    left: 0; 
-    position: absolute;
-    top: 0;
-    width: 24px;
-
-} */
+ } */
 
 input#title {
     margin: 0 auto;
@@ -103,11 +93,16 @@ input#year {
     box-shadow: 2px 2px 4px 2px rgba(40, 40, 40, 0.6);
 }
 
+#btn-search:hover {
+    background: rgb(70, 158, 154);
+    /* color: black; */
+}
+
 #output-container {
     position: relative;
     margin: 0 auto;
     padding: 10px;
-    padding-top: 250px;
+    padding-top: 200px;
     width: 70%;
     font-size: 30px;
 }
@@ -117,15 +112,20 @@ td {
     flex-direction: row;
     border: 1px solid rgb(223, 217, 217);
     background-color: rgb(255, 255, 255);
-    margin-bottom: 30px;   
+    margin-bottom: 20px;   
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    height: 130px;
 }
 
 td div {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 10px 10px 10px 50px;
     align-self: center;
+}
+
+td div:nth-child(2) {
+    display: block;
 }
 
 table {
@@ -133,6 +133,16 @@ table {
 }
 
 img {
-    max-height: 200px;
+    max-height: 130px;
 }  
+
+img:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 130px;
+    width: 80px;
+    background-image: url(/default-movie.png);
+    background-size: contain;
+}
 
