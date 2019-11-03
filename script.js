@@ -47,6 +47,7 @@ function clearState () {
         const dataId = await responseId.json();
         state.data.push(dataId);
       }
+      
       state.totalResults = parseInt(data.totalResults);
       
     } catch (error) {
@@ -84,18 +85,18 @@ function clearState () {
     let htmlTags = state.data
       .map(elem => `<tr>
         <td>
-            <img src=${elem.Poster}/>
+            <img   src=${elem.Poster} onerror="this.src='/default-movie.png'"/>
             <div>
                 <div>${elem.Title}</div>
                 <div>${elem.Year}</div>
             </div>  
-            <div class="details" id="details-plot">${elem.Plot}</div>  
+            <div class="details" id="details-plot">${elem.Plot !== "N/A" ? elem.Plot : "-" }</div>  
             <div class="details">${elem.Released}</div>
-            <div class="details">${elem.Runtime}</div>
+            <div class="details">${elem.Runtime !== "N/A" ? elem.Runtime : "-" }</div>
             <img class="icon" src="https://img.icons8.com/color/48/000000/star--v2.png">
-            <div class="details">${elem.Ratings[0].Value}</div>
+            <div class="details">${elem.Ratings.length > 0 ? elem.Ratings[0].Value : "-"}</div>
             <img  class="icon" src="https://img.icons8.com/ios/50/000000/laurel-wreath.png">
-            <div class="details">${elem.Awards}</div>
+            <div class="details">${elem.Awards !== "N/A" ? elem.Awards : "-" }</div>
         </td>
      
         </tr>`)
