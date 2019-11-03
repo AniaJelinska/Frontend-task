@@ -31,8 +31,8 @@ function clearState () {
       if(title === ""){
           return;
       }  
-      let url = `https://www.omdbapi.com/?s=${title}&y=${year}&page=${page}&apikey=6a0ebf5d`;
-      let response = await fetch(url);
+      const url = `https://www.omdbapi.com/?s=${title}&y=${year}&page=${page}&type=series&apikey=6a0ebf5d`;
+      const response = await fetch(url);
       const data = await response.json();
       
       if(data.Response === "False") {
@@ -40,8 +40,14 @@ function clearState () {
         return;
       } 
       
+      for(let i = 0; i < data.Search.length; i++) {
+        const id = data.Search[i].imdbID;
+        const urlId = `https://www.omdbapi.com/?i=${id}&apikey=6a0ebf5d`;
+        const responseId = await fetch(urlId);
+        const dataId = await responseId.json();
+        state.data.push(dataId);
+      }
       state.totalResults = parseInt(data.totalResults);
-      state.data = state.data.concat(data.Search);
       
     } catch (error) {
       console.log(error);
@@ -82,7 +88,14 @@ function clearState () {
             <div>
                 <div>${elem.Title}</div>
                 <div>${elem.Year}</div>
-            </div>    
+            </div>  
+            <div class="details" id="details-plot">${elem.Plot}</div>  
+            <div class="details">${elem.Released}</div>
+            <div class="details">${elem.Runtime}</div>
+            <img class="icon" src="https://img.icons8.com/color/48/000000/star--v2.png">
+            <div class="details">${elem.Ratings[0].Value}</div>
+            <img  class="icon" src="https://img.icons8.com/ios/50/000000/laurel-wreath.png">
+            <div class="details">${elem.Awards}</div>
         </td>
      
         </tr>`)
