@@ -85,8 +85,8 @@ function clearState () {
     let htmlTags = state.data
       .map(elem => `<tr>
         <td>
-            <img   src=${elem.Poster} onerror="this.src='/default-movie.png'"/>
-            <div>
+        <img src=${elem.Poster}onerror="this.src='/default-movie.png'"/>
+        <div>
                 <div>${elem.Title}</div>
                 <div>${elem.Year}</div>
             </div>  
